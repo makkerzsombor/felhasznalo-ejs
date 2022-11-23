@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .piros { color: red;}
+        .kek { color: blue;}
+        .zold { color: green;}
+    </style>
+    <title>App</title>
+  </head>
+  <body>
+    <table>
+        <thead>
+            <th>Név</th>
+            <th>Nem</th>
+            <th>Születési Idő</th>
+            <th>Egyenleg</th>
+            <th>Aktivitás</th>
+        </thead>
+        <tbody>
+            <% for(let e of elemek){ %>
+                <tr>
+                    <td><%= e.getName %></td>
+                    <td><i class="<% if (e.getFerfi) { %>
+                        <%= "fa fa-mars" %> 
+                      <%} else { %>
+                        <%= "fa fa-venus" %> 
+                      <% } %> "></i></td>
+
+                      <td title="<% if ( parseInt(e.getSzulIdo.slice(0,4)) < 2000) { %>
+                        <%= "jogosult a kedvezményre" %> 
+                      <%} else { %>
+                        <%= "nem jogosult a kedvezményre" %> 
+                      <% } %> "><%= e.getSzulIdo %></td>
+
+                      <td><strong class="<<% if (e.getEgyenleg > 0) { %>
+                        <%= "zold" %> 
+                      <%} else if(e.getEgyenleg < 0){ %>
+                        <%= "piros" %> 
+                      <% } else {%>
+                        <%= "kek" %>
+                      <% } %> "><%= e.getEgyenleg %></strong></td>
+
+                    <td><%= e.getACtive %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+  </body>
+</html>
